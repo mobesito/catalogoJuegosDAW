@@ -1,0 +1,29 @@
+#contenedor-form{
+    border: 1px solid;
+    top: 10%;
+    margin-bottom: 15%;
+    padding: 10px;
+    border-color: darkgrey;
+    border-bottom-color: white;
+    
+}
+
+#contenedor-form-hijo{
+    margin: auto;
+}
+
+#titulo-ingresar{
+    margin-bottom: 20px;
+}
+
+#barra-busqueda{
+    margin-top: 25px;
+    margin-bottom: 30px;
+    left: -15px;
+    
+}
+
+#btn-agregar{
+    float: right;
+    margin-top: 25px;
+}
