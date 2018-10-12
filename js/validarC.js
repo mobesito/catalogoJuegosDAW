@@ -1,58 +1,57 @@
+var expregN = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑ|\s]{3,35}$/;
+var expregE = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
+var boton  = document.getElementById('btn-enviar');
 
-	var boton  = document.getElementById('btn-enviar');
-	 var nombre = document.getElementById('nombre');
-	 var pais = document.getElementById('pais');
-	 var email = document.getElementById('email');
-	 var coment = document.getElementById('coment');
 
-	boton.addEventListener('click',function(){
+boton.addEventListener('click',function(){
 			
-			validarnombre();
-			validaremail();
-			validarcomentario();
-
-	})
+			validar();
+			
+})
 
 
 
 
-function validarnombre()
+function validar()
 {
-	 
-	var valorNombre = document.getElementById("nombre").value;
-	var expregN = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+	 valPais = document.getElementById("pais").value;
+	 valorNombre = document.getElementById("nombre").value;
+	 valorEmail = document.getElementById("email").value;
+	 valorComent = document.getElementById("coment").value;
 
-	if (!expregN.test(valorNombre))
-   {
-	   alert("Ingresar Correctamente el nombre");
-	} 	
-	email.focus();
+	if(expregN.test(valorNombre)){
+		if(valPais != "ninguno"){
+			if(expregE.test(valorEmail)){
+				if(valorComent.length<500 && valorComent.length>0){
+					getSession();
+					alert("datos enviados...");
+
+
+				}else{
+					alert("ingrese un comentario valido...");
+				}
+			}else{
+				alert("ingrese un email valido...");
+			}
+		}else{
+			alert("Debe seleccionar un pais...");
+		}
+
+	}else{
+		alert("ingrese correctamente su nombre");
+	}
+	
+	
+}
+conta = 1;
+
+function getSession(){
+	
+	var acumulador = sessionStorage.length;
+	acumulador += 1;
+	sessionStorage.setItem(acumulador,"NOMBRE: "+valorNombre+" PAIS: "+valPais+" EMAIL: "+valorEmail+" COMENTARIO: "+valorComent );
+	
+	
+	
 }
 
-function validaremail()
-{	 	 
-	var valorEmail = document.getElementById("email").value;
-	var expregE = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-
-	if (!expregE.test(valorEmail))
-   {
-	   alert("Ingresar Correctamente el email");
-	} 	
-	coment.focus();
-
-
-}
-
-function validarcomentario()
-{	 	 
-	var valorComent = document.getElementById("coment").value;
-	var expregC = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-
-	if (!expregC.test(valorComent))
-   {
-	   alert("comentario invalido");	
-	} 	
-	nombre.focus();
-
-
-}
